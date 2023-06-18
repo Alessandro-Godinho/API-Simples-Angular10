@@ -1,0 +1,36 @@
+<div class="mt-4">
+    <button mat-raised-button color="primary" class="novo-button" aria-label="Novo" routerLink="/contatos/adicionar">
+      <mat-icon>add</mat-icon> Novo
+    </button>
+  </div>
+<table mat-table [dataSource]="lista">
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let item">{{ item.nome }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let item">{{ item.email }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="telefone">
+    <th mat-header-cell *matHeaderCellDef>Telefone</th>
+    <td mat-cell *matCellDef="let item">{{ item.telefone }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="acoes">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-icon-button color="primary" aria-label="Editar" routerLink="/contatos/editar/{{ item.id }}">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" aria-label="Excluir" (click)="excluirContato(item)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
